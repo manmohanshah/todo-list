@@ -1,0 +1,45 @@
+###
+
+GET http://localhost:3000/api
+
+###
+
+GET http://localhost:3000/api/todos
+
+###
+
+POST http://localhost:3000/api/todos HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Pay bills",
+    "description": "Pay credit card bills",
+    "dueDate": "2021-08-30"
+}
+
+###
+
+POST http://localhost:3000/api/todos HTTP/1.1
+content-type: application/json
+
+[
+    {
+        "title": "Make reservation",
+        "description": "Make online hotel reservation",
+        "dueDate": "2021-08-26"
+    },
+    {
+        "title": "Pay bills",
+        "description": "Pay credit card bills",
+        "dueDate": "2021-08-30"
+    },
+    {
+        "title": "Buy groceries",
+        "description": "Buy groceries for home",
+        "dueDate": "2021-08-17"
+    }
+]
+
+### Test 404 handling
+
+GET http://localhost:3000/api/this-route-does-not-exists
