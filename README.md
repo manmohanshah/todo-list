@@ -1,36 +1,75 @@
 # To-Do List-type Rest API
 
-This repository is a simple Rest API written in JavaScript showcasing CRUD operations on a To-Do list. It allows users to add, edit, and remove tasks. Users may create multiple items that they want to remember to do.
+This repository is a simple Rest API written in JavaScript showcasing CRUD operations on a Todo list. It allows users to add, edit, and remove tasks. Users may create multiple items that they want to remember to do.
 
 ## Features
 
 - Each to-do item has:
-  Title
-  Description
-  Status (i.e. Pending, Done)
-  Due Date
+  - Title
+  - Description
+  - Status (i.e. Pending, Done)
+  - Due Date
 - Simple for the user to track the status of multiple items as well as remember when things are due
+
+## Environment
+
+```
+Node version: v14.15.3
+```
+
+## Setup
+
+```
+git clone https://github.com/manmohanshah/todo-list.git
+
+npm install
+```
+
+Update environment variables in `.env` file with MongoDB database credentials
+
+```
+DB_HOST // Hostname for MongoDB instance
+DB_DATABASE // MongoDB database name
+DB_USER // MongoDB database user name
+DB_PASSWORD // MongoDB database password
+DB_COLLECTION // MongoDB collection name to persist todo items
+```
+
+```
+node index.js
+```
+
+Install `REST Client` Visual Studio Code extension and use `router.rest` file OR use `Postman` to send API requests
 
 ## API Endpoints and Usage
 
 ### Test: base URL handling
 
+```
 GET http://localhost:3000/api
+```
 
 ### Get all todo items
 
+```
 GET http://localhost:3000/api/todos
+```
 
 ### Get todo items with status DONE
 
+```
 GET http://localhost:3000/api/todos?status=DONE
+```
 
 ### Get todo items due in next 5 days
 
+```
 GET http://localhost:3000/api/todos?dueInDays=5
+```
 
 ### Add single todo item
 
+```
 POST http://localhost:3000/api/todos HTTP/1.1
 content-type: application/json
 
@@ -39,9 +78,11 @@ content-type: application/json
     "description": "Pay for house utilities",
     "dueDate": "2021-08-30"
 }
+```
 
 ### Add single todo item without required fields
 
+```
 POST http://localhost:3000/api/todos HTTP/1.1
 content-type: application/json
 
@@ -49,9 +90,11 @@ content-type: application/json
     "description": "Testing empty title",
     "dueDate": "2021-08-30"
 }
+```
 
 ### Add multiple todo items
 
+```
 POST http://localhost:3000/api/todos HTTP/1.1
 content-type: application/json
 
@@ -72,9 +115,11 @@ content-type: application/json
         "dueDate": "2021-08-17"
     }
 ]
+```
 
 ### Update todo item
 
+```
 PUT http://localhost:3000/api/todos/6115f83d615cf16ce68d4b9e HTTP/1.1
 content-type: application/json
 
@@ -85,15 +130,20 @@ content-type: application/json
     "status": "DONE",
     "dueDate": "2021-08-17T00:00:00.000Z"
 }
+```
 
-### Delete todo item
+### Delete todo item (Soft delete)
 
+```
 DELETE http://localhost:3000/api/todos/6115e68fe030fec3e0e434b3 HTTP/1.1
 content-type: application/json
+```
 
 ### Test: 404 handling
 
+```
 GET http://localhost:3000/api/this-route-does-not-exists
+```
 
 ## Changelog
 
